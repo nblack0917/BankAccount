@@ -45,13 +45,8 @@ class SavingsAccount extends BankAccount {
     this.interestRate = interestRate;
     }
     withdraw(amt) {
-        if (this.balance() - amt >= 0) {
-            amt = -Math.abs(amt)
-            let withdraw = new Transaction(amt)
-            this.transactions.push(withdraw)
-        } else {
-            console.log(`Invalid funds for withdrawal.`)
-        }
+        let withdraw = super.charge(amt)
+        return withdraw
     }
     accrueInterest() {
         let bal = this.balance();
@@ -78,10 +73,12 @@ account3.deposit(12.95)
 account1.charge(43.25, "Jenny")
 account2.deposit(43.25)
 account1.charge(401.13, "David")
-console.log(account1)
-console.log(account2)
+// console.log(account1)
+// console.log(account2)
 console.log(account3)
 account3.accrueInterest()
+account3.withdraw(34.00)
+console.log(account3)
 
 
 
